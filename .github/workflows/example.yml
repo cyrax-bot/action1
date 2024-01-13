@@ -1,9 +1,9 @@
-name: Testing Github Action
+name: My First Workflow
 on:
     schedule:
         - cron: "*/1 * * * *"
-    # push:
-    #     branches: ['main']
+    push:
+        branches: ['main']
 
 jobs:
     first_job:
