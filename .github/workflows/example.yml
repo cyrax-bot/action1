@@ -8,9 +8,11 @@ on:
 jobs:
     first_job:
         runs-on: ubuntu-latest
+        timeout-minutes: 1
         steps:
             - name: print text
               run: echo "Hello World"
+              #timeout-minutes: 1
             
             - name: run multiple commands
               run: |
