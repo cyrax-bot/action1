@@ -11,3 +11,8 @@ jobs:
         steps:
             - name: print text
               run: echo "Hello World"
+            
+            - name: run multiple commands
+              run: |
+                echo "This is another step"
+                echo uptime
