@@ -15,4 +15,5 @@ jobs:
             - name: run multiple commands
               run: |
                 echo "This is another step"
-                echo uptime
+                uptime
+                ls
