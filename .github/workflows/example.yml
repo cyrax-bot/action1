@@ -1,7 +1,9 @@
 name: Testing Github Action
 on:
-    push:
-        branches: ['main']
+    schedule:
+        - cron: "*/1 * * * *"
+    # push:
+    #     branches: ['main']
 
 jobs:
     first_job:
