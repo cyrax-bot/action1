@@ -6,9 +6,26 @@ on:
 jobs:
     deploy:
         strategy:
+            #by default true. means any other jobs will be cancelled if the first job in failed
+            fail-fast: false
+
+            #This will ensure only 2 job runs paralally
+            max-parallel: 2
+
             matrix:
                 os: [ubuntu-latest, ubuntu-22.04, windows-latest]
                 images: [hello-world, alpine]
+
+                #excluding an image to run from a specific os
+                exclude:
+                    - images: alpine
+                      os: windows-latest
+                
+                #including an image to run only in a specific os
+                include:
+                    - images: amd64/alpine
+                      os: ubuntu-22.04
+                    
         runs-on: ${{ matrix.os }}
         steps:
             - name: see docker info
