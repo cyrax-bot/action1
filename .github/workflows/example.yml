@@ -1,24 +1,33 @@
 name: My First Workflow
-on:
-    # schedule:
-    #     - cron: "*/1 * * * *"
-    
+on:    
     push:
         branches: ['main']
-
-    workflow_dispatch: #For manual dispatch
 
 jobs:
     first_job:
         runs-on: ubuntu-latest
         timeout-minutes: 1
         steps:
-            - name: print text
-              run: echo "Hello World"
-              #timeout-minutes: 1
-            
-            - name: run multiple commands
-              run: |
-                echo "This is another step"
-                uptime
-                ls
+          - uses: actions/checkout@v4
+          - name: Put built assets in Artifacts
+            uses: actions/upload-artifact@v4
+            with:
+              name: my-artifact
+              path: |
+                .
+                !exlude.md
+    
+    second_job:
+      runs-on: ubuntu-latest
+      timeout-minutes: 1
+      needs: [ first_job ]
+      steps:
+        - uses: actions/checkout@v4
+        - name: Download Artifacts
+          uses: actions/download-artifact@v4
+          with:
+            name: my-artifact
+            path: .
+
+        - name: Check files
+          run: ls
