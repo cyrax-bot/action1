@@ -16,6 +16,8 @@ jobs:
               path: |
                 ./* 
                 !./exclude.md
+                !./.git
+                !./.github
     
     # second_job:
     #   runs-on: ubuntu-latest
